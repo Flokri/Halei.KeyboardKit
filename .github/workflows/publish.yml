@@ -28,7 +28,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Pack
-        run: dotnet pack Maui.iOS.FixKeyboardView/Maui.iOS.FixKeyboardView.csproj --configuration Release --output ./nupkgs
+        run: dotnet pack Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit.csproj --configuration Release --output ./nupkgs
 
       - name: Push to NuGet
         run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json

@@ -1,4 +1,4 @@
-﻿namespace Maui.iOS.FixKeyboardView;
+﻿namespace Maui.iOS.FixedKeyboardKit;
 
 // All the code in this file is only included on iOS.
 public class PlatformClass1
