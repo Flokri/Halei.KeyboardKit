@@ -22,13 +22,13 @@ jobs:
         run: dotnet workload install maui
 
       - name: Restore
-        run: dotnet restore Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit.csproj
+        run: dotnet restore Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit.csproj
 
       - name: Build
-        run: dotnet build Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit.csproj --configuration Release --no-restore
+        run: dotnet build Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit.csproj --configuration Release --no-restore
 
       - name: Pack
-        run: dotnet pack Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit.csproj --configuration Release --output ./nupkgs
+        run: dotnet pack Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit.csproj --configuration Release --output ./nupkgs
 
       - name: Push to NuGet
         run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
