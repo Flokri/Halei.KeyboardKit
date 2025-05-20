@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest  # MAUI requires macOS for full builds
+    runs-on: macos-latest
 
     steps:
       - name: Checkout
@@ -16,16 +16,16 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '7.0.x'
+          dotnet-version: '8.0.x'  # Use .NET 8 if your lib targets it
 
       - name: Install MAUI Workload
         run: dotnet workload install maui
 
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit.csproj
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit.csproj --configuration Release --no-restore
 
       - name: Pack
         run: dotnet pack Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit.csproj --configuration Release --output ./nupkgs
