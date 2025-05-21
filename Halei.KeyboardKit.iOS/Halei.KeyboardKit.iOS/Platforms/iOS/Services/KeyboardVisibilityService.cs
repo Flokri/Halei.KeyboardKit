@@ -3,7 +3,7 @@ using Foundation;
 using UIKit;
 using Halei.KeyboardKit.iOS.Interfaces;
 
-namespace Halei.KeyboardKit.iOS.Platforms.iOS.Services;
+namespace Halei.KeyboardKit.iOS.Services;
 
 public class KeyboardVisibilityService : IKeyboardVisibilityService
 {

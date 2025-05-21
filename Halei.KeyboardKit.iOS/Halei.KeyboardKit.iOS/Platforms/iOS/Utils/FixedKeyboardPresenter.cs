@@ -3,7 +3,7 @@ using UIKit;
 using Microsoft.Maui.Platform;
 using Halei.KeyboardKit.iOS.Interfaces;
 
-namespace Halei.KeyboardKit.iOS.Platforms.iOS.Utils;
+namespace Halei.KeyboardKit.iOS.Utils;
 
 public static class FixedKeyboardPresenter
 {
