@@ -1,36 +1,36 @@
+#if IOS
 using Foundation;
-using Halei.KeyboardKit.iOS.Interfaces;
 using UIKit;
+using Halei.KeyboardKit.iOS.Interfaces;
 
-namespace Halei.KeyboardKit.iOS.Services;
+namespace Halei.KeyboardKit.iOS.Platforms.iOS.Services;
 
 public class KeyboardVisibilityService : IKeyboardVisibilityService
 {
-    public event Action<double>? KeyboardShown;
-    public event Action? KeyboardHidden;
-
+    private Action<double>? _onHeightChanged;
     private NSObject? _showObserver;
     private NSObject? _hideObserver;
 
-    public void Init()
+    public KeyboardVisibilityService()
     {
-        _showObserver ??= UIKeyboard.Notifications.ObserveWillShow((s, e) =>
-        {
-            var height = UIKeyboard.FrameEndFromNotification(e.Notification).Height;
-            KeyboardShown?.Invoke(height);
-        });
-
-        _hideObserver ??= UIKeyboard.Notifications.ObserveWillHide((s, e) =>
-        {
-            KeyboardHidden?.Invoke();
-        });
+        _showObserver = UIKeyboard.Notifications.ObserveWillShow(OnKeyboardShow);
+        _hideObserver = UIKeyboard.Notifications.ObserveWillHide(OnKeyboardHide);
     }
 
-    public void Cleanup()
+    public void Subscribe(Action<double> onHeightChanged)
     {
-        _showObserver?.Dispose();
-        _hideObserver?.Dispose();
-        _showObserver = null;
-        _hideObserver = null;
+        _onHeightChanged = onHeightChanged;
+    }
+
+    private void OnKeyboardShow(object? sender, UIKeyboardEventArgs args)
+    {
+        var height = args.FrameEnd.Height;
+        _onHeightChanged?.Invoke(height);
+    }
+
+    private void OnKeyboardHide(object? sender, UIKeyboardEventArgs args)
+    {
+        _onHeightChanged?.Invoke(0);
     }
 }
+#endif

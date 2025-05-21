@@ -1,6 +1,6 @@
 namespace Halei.KeyboardKit.iOS.Interfaces;
 
-public interface IManualLifecyclePage
+public interface IPagePresented
 {
     void OnPresented();
 }

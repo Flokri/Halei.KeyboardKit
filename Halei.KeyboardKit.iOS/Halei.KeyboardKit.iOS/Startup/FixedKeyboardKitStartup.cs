@@ -1,7 +1,6 @@
-using Halei.KeyboardKit.iOS.Interfaces;
-
 #if IOS
-using Halei.KeyboardKit.iOS.Services;
+using Halei.KeyboardKit.iOS.Interfaces;
+using Halei.KeyboardKit.iOS.Platforms.iOS.Services;
 #endif
 
 namespace Halei.KeyboardKit.iOS.Startup;
