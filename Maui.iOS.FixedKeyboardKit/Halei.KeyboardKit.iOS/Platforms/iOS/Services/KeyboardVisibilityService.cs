@@ -1,8 +1,8 @@
 using Foundation;
-using Maui.iOS.FixedKeyboardKit.Interfaces;
+using Halei.KeyboardKit.iOS.Interfaces;
 using UIKit;
 
-namespace Maui.iOS.FixedKeyboardKit.Services;
+namespace Halei.KeyboardKit.iOS.Services;
 
 public class KeyboardVisibilityService : IKeyboardVisibilityService
 {

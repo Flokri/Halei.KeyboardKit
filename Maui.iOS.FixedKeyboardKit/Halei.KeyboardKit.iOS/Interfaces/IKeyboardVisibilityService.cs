@@ -1,4 +1,4 @@
-namespace Maui.iOS.FixedKeyboardKit.Interfaces;
+namespace Halei.KeyboardKit.iOS.Interfaces;
 
 public interface IKeyboardVisibilityService
 {

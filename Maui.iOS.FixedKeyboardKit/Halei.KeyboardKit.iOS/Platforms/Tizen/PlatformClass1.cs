@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Maui.iOS.FixedKeyboardKit
+namespace Halei.KeyboardKit.iOS
 {
     // All the code in this file is only included on Tizen.
     public class PlatformClass1

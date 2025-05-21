@@ -1,9 +1,9 @@
 #if IOS
-using Maui.iOS.FixedKeyboardKit.Interfaces;
+using Halei.KeyboardKit.iOS.Interfaces;
 using Microsoft.Maui.Platform;
 using UIKit;
 
-namespace Maui.iOS.FixedKeyboardKit.Utils;
+namespace Halei.KeyboardKit.iOS.Utils;
 
 public static class FixedKeyboardPresenter
 {

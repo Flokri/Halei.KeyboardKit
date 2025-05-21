@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maui.iOS.FixedKeyboardKit", "Maui.iOS.FixedKeyboardKit\Maui.iOS.FixedKeyboardKit.csproj", "{B6E3F91F-F800-4882-8BAF-A8F17274E545}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Halei.KeyboardKit.iOS", "Halei.KeyboardKit.iOS\Halei.KeyboardKit.iOS.csproj", "{B6E3F91F-F800-4882-8BAF-A8F17274E545}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

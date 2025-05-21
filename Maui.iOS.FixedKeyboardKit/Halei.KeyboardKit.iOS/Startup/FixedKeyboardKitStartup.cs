@@ -1,10 +1,10 @@
-using Maui.iOS.FixedKeyboardKit.Interfaces;
+using Halei.KeyboardKit.iOS.Interfaces;
 
 #if IOS
-using Maui.iOS.FixedKeyboardKit.Services;
+using Halei.KeyboardKit.iOS.Services;
 #endif
 
-namespace Maui.iOS.FixedKeyboardKit.Startup;
+namespace Halei.KeyboardKit.iOS.Startup;
 
 public static class FixedKeyboardKitStartup
 {

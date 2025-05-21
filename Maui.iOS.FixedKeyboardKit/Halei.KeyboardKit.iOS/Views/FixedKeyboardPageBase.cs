@@ -1,6 +1,6 @@
-using Maui.iOS.FixedKeyboardKit.Interfaces;
+using Halei.KeyboardKit.iOS.Interfaces;
 
-namespace Maui.iOS.FixedKeyboardKit.Views;
+namespace Halei.KeyboardKit.iOS.Views;
 
 public abstract class FixedKeyboardPageBase(IKeyboardVisibilityService keyboardService)
     : ContentPage, IManualLifecyclePage

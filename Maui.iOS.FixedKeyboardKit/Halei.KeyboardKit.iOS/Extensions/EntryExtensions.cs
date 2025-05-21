@@ -2,7 +2,7 @@
 using UIKit;
 using Microsoft.Maui.Controls.Platform;
 
-namespace Maui.iOS.FixedKeyboardKit.Extensions;
+namespace Halei.KeyboardKit.iOS.Extensions;
 
 public static class EntryExtensions
 {
