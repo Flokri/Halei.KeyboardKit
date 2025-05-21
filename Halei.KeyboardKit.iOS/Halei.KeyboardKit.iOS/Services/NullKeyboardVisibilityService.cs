@@ -4,6 +4,21 @@ namespace Halei.KeyboardKit.iOS.Services;
 
 public class NullKeyboardVisibilityService : IKeyboardVisibilityService
 {
-    public void Subscribe(Action<double> onChanged) {}
-    public void Unsubscribe() {}
+    public event Action? KeyboardDidShow
+    {
+        add { }
+        remove { }
+    }
+
+    public event Action<double>? KeyboardShown
+    {
+        add { }
+        remove { }
+    }
+
+    public event Action? KeyboardHidden
+    {
+        add { }
+        remove { }
+    }
 }

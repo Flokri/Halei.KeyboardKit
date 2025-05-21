@@ -2,5 +2,7 @@ namespace Halei.KeyboardKit.iOS.Interfaces;
 
 public interface IKeyboardVisibilityService
 {
-    void Subscribe(Action<double> onHeightChanged);
+    event Action KeyboardDidShow;
+    event Action<double> KeyboardShown;
+    event Action KeyboardHidden;
 }
