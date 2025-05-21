@@ -3,17 +3,17 @@ name: Build and Publish NuGet
 on:
   push:
     tags:
-      - 'v*'
+      - 'v*'  # Only trigger on tags like v1.0.0
 
 jobs:
   build:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup .NET SDK
+      - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
@@ -21,14 +21,14 @@ jobs:
       - name: Install MAUI Workload
         run: dotnet workload install maui
 
-      - name: Restore dependencies
-        run: dotnet restore Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit.csproj
+      - name: Restore
+        run: dotnet restore Maui.iOS.FixedKeyboardKit.csproj
 
-      - name: Build project
-        run: dotnet build Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit.csproj --configuration Release --no-restore
+      - name: Build
+        run: dotnet build Maui.iOS.FixedKeyboardKit.csproj --configuration Release --no-restore
 
-      - name: Pack NuGet package
-        run: dotnet pack Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit.csproj --configuration Release --output ./nupkgs
+      - name: Pack
+        run: dotnet pack Maui.iOS.FixedKeyboardKit.csproj --configuration Release --output ./nupkgs
 
-      - name: Push to NuGet.org
+      - name: Push to NuGet
         run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
