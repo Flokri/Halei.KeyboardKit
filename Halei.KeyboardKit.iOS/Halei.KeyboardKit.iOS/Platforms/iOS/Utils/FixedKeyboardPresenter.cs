@@ -5,11 +5,11 @@ using Halei.KeyboardKit.iOS.Interfaces;
 
 namespace Halei.KeyboardKit.iOS.Utils;
 
-public static class FixedKeyboardPresenter
+public class FixedKeyboardPresenter : IPagePresenter
 {
-    private static UIViewController? _hostController;
+    private UIViewController? _hostController;
 
-    public static void ShowFixedPage(Page page)
+    public void Show(Page page)
     {
         var vc = new UIViewController();
 
@@ -37,7 +37,7 @@ public static class FixedKeyboardPresenter
             });
     }
 
-    public static void DismissFixedPage()
+    public void Dismiss(Page page)
     {
         _hostController?.DismissViewController(true, null);
         _hostController = null;

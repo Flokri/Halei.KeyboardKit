@@ -11,7 +11,7 @@
         <Nullable>enable</Nullable>
         
         
-        <Version>0.0.3</Version>
+        <Version>0.0.4</Version>
         <Authors>Florian Kriegl</Authors>
         <Company>flokri</Company>
         <Description>Provide a base page and a page server (ios) where the keyboard does not resize the page or scroll content when opened.</Description>
@@ -37,6 +37,7 @@
 
     <ItemGroup>
       <Folder Include="Platforms\Android\" />
+      <Folder Include="Utils\" />
     </ItemGroup>
 
 </Project>
