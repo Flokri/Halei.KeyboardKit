@@ -11,35 +11,41 @@ public class FixedKeyboardPresenter : IPagePresenter
 
     public void Show(Page page)
     {
+        var mauiContext = Application.Current.Windows.FirstOrDefault()?.Handler?.MauiContext;
+        if (mauiContext is null)
+            throw new InvalidOperationException("MauiContext is not available");
+
+        var handler = page.ToHandler(mauiContext);
+        var nativeView = handler.PlatformView;
+        if (nativeView is null)
+            throw new InvalidOperationException("Could not render page to native view");
+
         var vc = new UIViewController();
+        vc.View!.BackgroundColor = UIColor.White;
 
-        var mauiContext = Application.Current?.Windows[0].Handler?.MauiContext;
-        if (mauiContext != null)
-        {
-            var handler = page.ToHandler(mauiContext);
-            var nativeView = handler.PlatformView;
-
-            nativeView!.Frame = UIScreen.MainScreen.Bounds;
-            nativeView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
-
-            vc.View!.AddSubview(nativeView);
-        }
+        nativeView.Frame = UIScreen.MainScreen.Bounds;
+        nativeView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
+        vc.View!.AddSubview(nativeView);
 
         vc.ModalPresentationStyle = UIModalPresentationStyle.FullScreen;
-        _hostController = vc;
+        vc.AutomaticallyAdjustsScrollViewInsets = false;
+        vc.EdgesForExtendedLayout = UIRectEdge.All;
 
-        UIApplication.SharedApplication.KeyWindow?
-            .RootViewController?
-            .PresentViewController(vc, true, () =>
-            {
-                if (page is IPagePresented lifecycle)
-                    lifecycle.OnPresented();
-            });
+        UIApplication.SharedApplication.KeyWindow!.RootViewController?
+            .PresentViewController(vc, true, null);
+
+        if (page is IPagePresented lifecyclePage)
+        {
+            lifecyclePage.OnPresented();
+        }
+        
+        if (page is IPagePresented lifecycle)
+            lifecycle.OnPresented();
     }
 
     public void Dismiss(Page page)
     {
-        _hostController?.DismissViewController(true, null);
+        _hostController?.DismissViewController(animated: true, completionHandler: null);
         _hostController = null;
     }
 }
