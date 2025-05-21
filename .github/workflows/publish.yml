@@ -3,7 +3,7 @@ name: Build and Publish NuGet
 on:
   push:
     tags:
-      - 'v*'  # Triggers on version tags like v1.0.0
+      - 'v*'  # Only triggers on version tags like v1.0.0
 
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
       - name: Show working directory
         run: pwd
 
-      - name: List all files in the repo
+      - name: List files
         run: ls -R
 
       - name: Setup .NET
@@ -27,15 +27,14 @@ jobs:
       - name: Install MAUI workload
         run: dotnet workload install maui
 
-      # 🛠️ TEMPORARY: This will fail until we know the exact path
-      - name: Attempt restore
-        run: dotnet restore Maui.iOS.FixedKeyboardKit.csproj
+      - name: Restore dependencies
+        run: dotnet restore Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit.csproj
 
-      - name: Attempt build
-        run: dotnet build Maui.iOS.FixedKeyboardKit.csproj --configuration Release --no-restore
+      - name: Build
+        run: dotnet build Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit.csproj --configuration Release --no-restore
 
-      - name: Attempt pack
-        run: dotnet pack Maui.iOS.FixedKeyboardKit.csproj --configuration Release --output ./nupkgs
+      - name: Pack
+        run: dotnet pack Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit/Maui.iOS.FixedKeyboardKit.csproj --configuration Release --output ./nupkgs
 
-      - name: Push to NuGet (only runs if pack succeeds)
+      - name: Push to NuGet
         run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
