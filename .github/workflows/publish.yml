@@ -3,7 +3,7 @@ name: Build and Publish NuGet
 on:
   push:
     tags:
-      - 'v*'  # Only triggers on version tags like v1.0.0
+      - 'v*'  # Triggers on tags like v1.0.0
 
 jobs:
   build:
@@ -13,13 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Show working directory
+      - name: Debug: Show working directory
         run: pwd
 
-      - name: List files
+      - name: Debug: List all files
         run: ls -R
 
-      - name: Setup .NET
+      - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
@@ -30,11 +30,11 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore Halei.KeyboardKit.iOS/Halei.KeyboardKit.iOS/Halei.KeyboardKit.iOS.csproj
 
-      - name: Build
+      - name: Build project
         run: dotnet build Halei.KeyboardKit.iOS/Halei.KeyboardKit.iOS/Halei.KeyboardKit.iOS.csproj --configuration Release --no-restore
 
-      - name: Pack
+      - name: Pack NuGet package
         run: dotnet pack Halei.KeyboardKit.iOS/Halei.KeyboardKit.iOS/Halei.KeyboardKit.iOS.csproj --configuration Release --output ./nupkgs
 
-      - name: Push to NuGet
-        run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+      - name: Push to NuGet (skip duplicates)
+        run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
