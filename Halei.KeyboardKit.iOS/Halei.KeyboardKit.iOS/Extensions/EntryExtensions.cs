@@ -16,11 +16,10 @@ public static class EntryExtensions
         if (entry.Handler?.PlatformView is Android.Widget.EditText et)
         {
             et.RequestFocus();
-            et.Post(() =>
-            {
-                var inputMethodManager = et.Context?.GetSystemService(Android.Content.Context.InputMethodService) as Android.Views.InputMethods.InputMethodManager;
-                inputMethodManager?.ShowSoftInput(et, Android.Views.InputMethods.ShowFlags.Implicit);
-            });
+            var inputMethodManager =
+                et.Context?.GetSystemService(Android.Content.Context.InputMethodService) as
+                    Android.Views.InputMethods.InputMethodManager;
+            inputMethodManager?.ShowSoftInput(et, Android.Views.InputMethods.ShowFlags.Implicit);
         }
 #endif
     }
