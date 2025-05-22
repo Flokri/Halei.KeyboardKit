@@ -18,14 +18,15 @@ public static class EntryExtensions
             tf.BecomeFirstResponder();
         }
 #elif ANDROID
-        if (entry.Handler?.PlatformView is Android.Widget.EditText et)
+        if (entry.Handler?.PlatformView is Android.Widget.EditText et && et.Context is Context context)
         {
-            et.RequestFocus();
-            var inputMethodManager =
-                et.Context?.GetSystemService(Context.InputMethodService) as
-                    InputMethodManager;
-            
-           inputMethodManager.ToggleSoftInput(InputMethodManager.ShowForced, 0);
+            et.Post(() =>
+            {
+                et.RequestFocus();
+                
+                var imm = context.GetSystemService(Context.InputMethodService) as InputMethodManager;
+                imm?.ShowSoftInput(et, ShowFlags.Forced);
+            });
         }
 #endif
     }
