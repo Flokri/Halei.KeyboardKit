@@ -1,4 +1,9 @@
 #if IOS || ANDROID
+
+#if ANDROID
+using Android.Content;
+using Android.Views.InputMethods;
+#endif
 using Microsoft.Maui.Controls;
 
 namespace Halei.KeyboardKit.iOS.Extensions;
@@ -17,9 +22,10 @@ public static class EntryExtensions
         {
             et.RequestFocus();
             var inputMethodManager =
-                et.Context?.GetSystemService(Android.Content.Context.InputMethodService) as
-                    Android.Views.InputMethods.InputMethodManager;
-            inputMethodManager?.ShowSoftInput(et, Android.Views.InputMethods.ShowFlags.Implicit);
+                et.Context?.GetSystemService(Context.InputMethodService) as
+                    InputMethodManager;
+            
+           inputMethodManager.ToggleSoftInput(InputMethodManager.ShowForced, 0);
         }
 #endif
     }
