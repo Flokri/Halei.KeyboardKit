@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net8.0-android;net8.0-ios</TargetFrameworks>
+        <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
         <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
         <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
         <!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
@@ -11,7 +11,7 @@
         <Nullable>enable</Nullable>
         
         
-        <Version>0.0.9</Version>
+        <Version>0.0.10</Version>
         <Authors>Florian Kriegl</Authors>
         <Company>flokri</Company>
         <Description>Provide a base page and a page server (ios) where the keyboard does not resize the page or scroll content when opened.</Description>
