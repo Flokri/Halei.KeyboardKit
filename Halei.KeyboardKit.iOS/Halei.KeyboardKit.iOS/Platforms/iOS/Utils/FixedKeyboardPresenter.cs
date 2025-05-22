@@ -33,11 +33,6 @@ public class FixedKeyboardPresenter : IPagePresenter
 
         UIApplication.SharedApplication.KeyWindow!.RootViewController?
             .PresentViewController(vc, true, null);
-
-        if (page is IPagePresented lifecyclePage)
-        {
-            lifecyclePage.OnPresented();
-        }
         
         if (page is IPagePresented lifecycle)
             lifecycle.OnPresented();

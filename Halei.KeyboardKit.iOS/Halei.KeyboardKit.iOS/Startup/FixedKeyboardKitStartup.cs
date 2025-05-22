@@ -14,7 +14,7 @@ public static class FixedKeyboardKitStartup
         builder.Services.AddSingleton<IKeyboardVisibilityService, KeyboardVisibilityService>();
         builder.Services.AddSingleton<FixedKeyboardPresenter>();
 #else
-        builder.Services.AddSingleton<IKeyboardVisibilityService, NullKeyboardVisibilityService>();
+        builder.Services.AddSingleton<IKeyboardVisibilityService, KeyboardVisibilityService>();
 #endif
         return builder;
     }
