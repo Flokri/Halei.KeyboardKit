@@ -13,6 +13,8 @@ public static class FixedKeyboardKitStartup
 #if IOS
         builder.Services.AddSingleton<IKeyboardVisibilityService, KeyboardVisibilityService>();
         builder.Services.AddSingleton<FixedKeyboardPresenter>();
+#else
+        builder.Services.AddSingleton<IKeyboardVisibilityService, NullKeyboardVisibilityService>();
 #endif
         return builder;
     }
