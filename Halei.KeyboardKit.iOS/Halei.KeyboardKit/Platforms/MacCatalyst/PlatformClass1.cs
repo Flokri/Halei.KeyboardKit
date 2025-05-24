@@ -1,4 +1,4 @@
-﻿namespace Halei.KeyboardKit.iOS;
+﻿namespace Halei.KeyboardKit;
 
 // All the code in this file is only included on Mac Catalyst.
 public class PlatformClass1

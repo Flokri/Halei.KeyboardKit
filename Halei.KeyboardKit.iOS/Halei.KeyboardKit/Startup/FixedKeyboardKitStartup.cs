@@ -1,10 +1,10 @@
-using Halei.KeyboardKit.iOS.Interfaces;
-using Halei.KeyboardKit.iOS.Services;
+using Halei.KeyboardKit.Interfaces;
+using Halei.KeyboardKit.Services;
 #if IOS
-using Halei.KeyboardKit.iOS.Utils;
+using Halei.KeyboardKit.Utils;
 #endif
 
-namespace Halei.KeyboardKit.iOS.Startup;
+namespace Halei.KeyboardKit.Startup;
 
 public static class FixedKeyboardKitStartup
 {

@@ -1,8 +1,8 @@
 #if IOS
 using UIKit;
-using Halei.KeyboardKit.iOS.Interfaces;
+using Halei.KeyboardKit.Interfaces;
 
-namespace Halei.KeyboardKit.iOS.Services;
+namespace Halei.KeyboardKit.Services;
 
 public class KeyboardVisibilityService : IKeyboardVisibilityService
 {

@@ -1,9 +1,9 @@
 #if IOS
 using UIKit;
 using Microsoft.Maui.Platform;
-using Halei.KeyboardKit.iOS.Interfaces;
+using Halei.KeyboardKit.Interfaces;
 
-namespace Halei.KeyboardKit.iOS.Utils;
+namespace Halei.KeyboardKit.Utils;
 
 public class FixedKeyboardPresenter : IPagePresenter
 {

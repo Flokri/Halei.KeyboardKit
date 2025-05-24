@@ -15,7 +15,7 @@
         <Authors>Florian Kriegl</Authors>
         <Company>flokri</Company>
         <Description>Provide a base page and a page server (ios) where the keyboard does not resize the page or scroll content when opened.</Description>
-        <PackageId>Halei.KeyboardKit.iOS</PackageId>
+        <PackageId>Halei.KeyboardKit</PackageId>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
@@ -24,10 +24,11 @@
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-        <RootNamespace>Halei.KeyboardKit.iOS</RootNamespace>
-        <PackageProjectUrl>https://github.com/Flokri/Halei.KeyboardKit.iOS</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/Flokri/Halei.KeyboardKit.iOS</RepositoryUrl>
+        <RootNamespace>Halei.KeyboardKit</RootNamespace>
+        <PackageProjectUrl>https://github.com/Flokri/Halei.KeyboardKit</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Flokri/Halei.KeyboardKit</RepositoryUrl>
         <RepositoryType>GitHub</RepositoryType>
+        <AssemblyName>Halei.KeyboardKit</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>

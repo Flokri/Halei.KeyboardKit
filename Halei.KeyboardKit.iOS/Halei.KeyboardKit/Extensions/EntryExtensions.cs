@@ -6,7 +6,7 @@ using Android.Views.InputMethods;
 #endif
 using Microsoft.Maui.Controls;
 
-namespace Halei.KeyboardKit.iOS.Extensions;
+namespace Halei.KeyboardKit.Extensions;
 
 public static class EntryExtensions
 {

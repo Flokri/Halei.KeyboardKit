@@ -1,4 +1,4 @@
-namespace Halei.KeyboardKit.iOS.Interfaces;
+namespace Halei.KeyboardKit.Interfaces;
 
 public interface IPagePresented
 {

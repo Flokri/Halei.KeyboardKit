@@ -1,9 +1,9 @@
 using Android.App;
-using Halei.KeyboardKit.iOS.Interfaces;
+using Halei.KeyboardKit.Interfaces;
 using Rect = Android.Graphics.Rect;
 using View = Android.Views.View;
 
-namespace Halei.KeyboardKit.iOS.Services;
+namespace Halei.KeyboardKit.Services;
 
 #if ANDROID
 public class KeyboardVisibilityService : IKeyboardVisibilityService
