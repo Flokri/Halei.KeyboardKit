@@ -1,4 +1,4 @@
-# Maui.iOS.FixedKeyboardKit
+# Halei.KeyboardKit
 
 [![Build and Publish NuGet](https://github.com/Flokri/Halei.KeyboardKit.iOS/actions/workflows/publish.yml/badge.svg)](https://github.com/Flokri/Halei.KeyboardKit.iOS/actions/workflows/publish.yml)
 
