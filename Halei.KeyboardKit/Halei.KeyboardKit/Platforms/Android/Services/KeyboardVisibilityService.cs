@@ -55,12 +55,12 @@ public class KeyboardVisibilityService : IKeyboardVisibilityService
             MainThread.BeginInvokeOnMainThread(async () =>
             {
                 await Task.Delay(200);
-                KeyboardDidShow?.Invoke();
+                KeyboardHidden?.Invoke();
             });
         }
         else if (heightDiff < threshold && visibleHeight != _previousVisibleHeight)
         {
-            KeyboardHidden?.Invoke();
+            KeyboardDidShow?.Invoke();
         }
 
         _previousVisibleHeight = visibleHeight;
