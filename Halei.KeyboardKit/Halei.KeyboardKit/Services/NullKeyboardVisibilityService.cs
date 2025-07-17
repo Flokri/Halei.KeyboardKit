@@ -4,19 +4,19 @@ namespace Halei.KeyboardKit.Services;
 
 public class NullKeyboardVisibilityService : IKeyboardVisibilityService
 {
-    public event Action? KeyboardDidShow
+    public event EventHandler KeyboardShown
     {
         add { }
         remove { }
     }
 
-    public event Action<double>? KeyboardShown
+    public event KeyboardEventHandler KeyboardShowing
     {
         add { }
         remove { }
     }
 
-    public event Action? KeyboardHidden
+    public event EventHandler KeyboardHidden
     {
         add { }
         remove { }

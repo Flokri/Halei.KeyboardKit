@@ -2,7 +2,7 @@ namespace Halei.KeyboardKit.Interfaces;
 
 public interface IKeyboardVisibilityService
 {
-    event Action KeyboardDidShow;
-    event Action<double> KeyboardShown;
-    event Action KeyboardHidden;
+    event KeyboardEventHandler KeyboardShowing;
+    event EventHandler KeyboardShown;
+    event EventHandler KeyboardHidden;
 }

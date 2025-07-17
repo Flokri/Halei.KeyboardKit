@@ -6,40 +6,36 @@ using View = Android.Views.View;
 namespace Halei.KeyboardKit.Services;
 
 #if ANDROID
-public class KeyboardVisibilityService : IKeyboardVisibilityService
+public partial class KeyboardVisibilityService : IKeyboardVisibilityService
 {
-    public event Action? KeyboardDidShow;
-    public event Action<double>? KeyboardShown;
-    public event Action? KeyboardHidden;
-
     private readonly Activity _activity;
     private double _lastKeyboardHeight;
-    private View? _rootView;
-    private int _previousVisibleHeight;
+    private View? _contentView;
+    private int? _previousVisibleHeight;
 
     public KeyboardVisibilityService()
     {
         _activity = Platform.CurrentActivity ?? throw new InvalidOperationException("No current activity found");
 
-        _rootView = _activity.Window.DecorView.FindViewById(Android.Resource.Id.Content);
-        if (_rootView != null)
-        {
-            _rootView.ViewTreeObserver.GlobalLayout += OnGlobalLayout;
-        }
+        _contentView = _activity.Window.DecorView.FindViewById(Android.Resource.Id.Content);
+
+        if (_contentView == null)
+            throw new InvalidOperationException("Content view not found");
+
+        _contentView.ViewTreeObserver.GlobalLayout += ContentView_GlobalLayout;
     }
 
-    private void OnGlobalLayout(object? sender, EventArgs e)
+    private void ContentView_GlobalLayout(object? sender, EventArgs e)
     {
-        if (_rootView == null) return;
+        Rect windowBounds = new();
+        _contentView.GetWindowVisibleDisplayFrame(windowBounds);
 
-        Rect r = new();
-        _rootView.GetWindowVisibleDisplayFrame(r);
+        int screenHeight = _contentView.RootView.Height;
+        int visibleHeight = windowBounds.Height();
 
-        int screenHeight = _rootView.RootView.Height;
-        int visibleHeight = r.Height();
         int heightDiff = screenHeight - visibleHeight;
 
-        if (_previousVisibleHeight == 0)
+        if (!_previousVisibleHeight.HasValue)
         {
             _previousVisibleHeight = visibleHeight;
             return;
@@ -50,17 +46,17 @@ public class KeyboardVisibilityService : IKeyboardVisibilityService
         if (heightDiff > threshold && visibleHeight != _previousVisibleHeight)
         {
             _lastKeyboardHeight = heightDiff / _activity.Resources.DisplayMetrics.Density;
-            KeyboardShown?.Invoke(_lastKeyboardHeight);
+            OnKeyboardShowing(_lastKeyboardHeight);
 
             MainThread.BeginInvokeOnMainThread(async () =>
             {
                 await Task.Delay(200);
-                KeyboardDidShow?.Invoke();
+                OnKeyboardShown();
             });
         }
         else if (heightDiff < threshold && visibleHeight != _previousVisibleHeight)
         {
-            KeyboardHidden?.Invoke();
+            OnKeyboardHidden();
         }
 
         _previousVisibleHeight = visibleHeight;
@@ -68,9 +64,9 @@ public class KeyboardVisibilityService : IKeyboardVisibilityService
 
     ~KeyboardVisibilityService()
     {
-        if (_rootView != null)
+        if (_contentView != null)
         {
-            _rootView.ViewTreeObserver.GlobalLayout -= OnGlobalLayout;
+            _contentView.ViewTreeObserver.GlobalLayout -= ContentView_GlobalLayout;
         }
     }
 }
